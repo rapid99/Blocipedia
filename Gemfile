@@ -27,7 +27,7 @@ gem 'pry'
 gem 'figaro'
 gem 'bootstrap'
 gem 'pg'
-
+gem 'devise'
 
 
 # Use ActiveModel has_secure_password
