@@ -6,7 +6,9 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '3e3a93437ac44a949fd643de6167dca5a7c942f16d6e4e510ea41bb0144c9fc8362c239a51a6e3b4864afc917760bb377fc7228c0eafb37921699dae0e4f8f18'
+
+  # config.secret_key = '739765deffa85b4d156992a821c47949c20f8aabe97eed51291842dea0d335ae207cfcf87b8ef1df957b8600a5ab5b93bd8aedd8c1e4e00663590581425e7810'
+
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -16,7 +18,9 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
+
   config.mailer = 'Devise::Mailer'
+
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -109,10 +113,12 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
+
   # config.pepper = 'fbe4ee3a568ffc7e120bf85ecaa82496f6f5b4beae0e7d20e738a541e601344aa03df8be59050f40731aea90772f25f371cab8a67415ce3f81c236405bea382b'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
+
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -134,7 +140,9 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
-  config.reconfirmable = false
+
+  config.reconfirmable = true
+
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
@@ -221,7 +229,9 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  config.scoped_views = false
+
+  # config.scoped_views = false
+
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
