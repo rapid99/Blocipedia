@@ -1,0 +1,12 @@
+<%= form_for @wiki do |f| %>
+  <%= f.label :title, class: 'form-control' %>
+  <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %><br><br>
+
+  <%= f.label :body, class: 'form-control'%>
+  <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %><br><br>
+
+  <%= f.check_box :private %> Private Topic<br><br>
+
+  <%= f.submit "Create", class: 'btn btn-success', method: :create %>
+
+<% end %>

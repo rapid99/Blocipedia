@@ -6,4 +6,5 @@ class Wiki < ActiveRecord::Base
   validates :body, length: {minimum: 20}, presence: true
 
 
+
 end

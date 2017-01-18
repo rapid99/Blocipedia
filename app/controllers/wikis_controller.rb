@@ -1,4 +1,4 @@
-class WikiController < ApplicationController
+class WikisController < ApplicationController
   # before_action :require_sign_in, except: :show
   # before_action :authorize_user, except: [:show, :new, :create]
 
@@ -15,7 +15,7 @@ class WikiController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.create!(wiki_params)
+    @wiki = Wiki.create(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki has been saved"
       redirect_to wikis_path
@@ -31,7 +31,7 @@ class WikiController < ApplicationController
     @wiki.update_attributes(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki was updated"
-      redirect_to wiki_index_path
+      redirect_to wikis_path
     end
   end
 
@@ -39,6 +39,7 @@ class WikiController < ApplicationController
     @wiki = Wiki.find(params[:id])
     if @wiki.destroy
       flash[:notice] = "Wiki was deleted successfully"
+      redirect_to wikis_path
     else
       flash[:alert] = "There was an error deleting the wiki"
     end
