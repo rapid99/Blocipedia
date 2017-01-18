@@ -24,13 +24,10 @@ class WikiController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.update_attributes(params[:wiki])
+    @wiki.update_attributes(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki was updated"
-      redirect_to :wiki
-    else
-      flash[:alert] = "There was a problem saving the wiki"
-      render :edit
+      redirect_to wiki_index_path
     end
   end
 
