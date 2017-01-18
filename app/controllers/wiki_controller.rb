@@ -15,7 +15,11 @@ class WikiController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(wiki_params)
+    @wiki = Wiki.create!(wiki_params)
+    if @wiki.save
+      flash[:notice] = "Wiki has been saved"
+      redirect_to wikis_path
+    end
   end
 
   def edit
