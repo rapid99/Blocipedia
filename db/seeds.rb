@@ -5,6 +5,15 @@
     private: false,
   )
 wiki = Wiki.all
+end
+
+5.times do
+  User.create!(
+  email: Faker::Internet.email,
+  password: "helloworld",
+  )
+user = User.all
+end
 
 puts "#{Wiki.count} wikis created!"
-end
+puts "#{User.count} users created!"
