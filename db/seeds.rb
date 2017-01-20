@@ -1,7 +1,7 @@
 20.times do
   Wiki.create!(
     title: Faker::Beer.unique.name,
-    body: Faker::Hacker.say_something_smart,
+    body: Faker::Lorem.paragraphs(3),
     private: true,
   )
 wiki = Wiki.all
