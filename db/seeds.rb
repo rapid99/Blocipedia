@@ -2,7 +2,7 @@
   Wiki.create!(
     title: Faker::Beer.unique.name,
     body: Faker::Lorem.paragraphs(3),
-    private: true,
+    private: false,
   )
 wiki = Wiki.all
 

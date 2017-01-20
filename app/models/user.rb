@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :wiki
 
+  before_save {self.role ||= :standard}
+
+
+  enum role: [:standard, :premium, :admin]
+
 end

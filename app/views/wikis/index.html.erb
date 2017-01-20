@@ -2,10 +2,12 @@
 
 <h3><%= link_to 'Create A Wiki', new_wiki_path, class: 'btn btn-success'%></h3><br>
 
-<%= @wiki.each do |w| %>
+<% @wiki.each do |w| %>
   <%= link_to w.title, w %><br>
   <small>
     Submitted <%= time_ago_in_words(w.created_at) %>
     <br><br>
   </small>
 <% end %>
+
+<%= link_to 'Home', '/', class: 'btn btn-primary' %><br><br>
