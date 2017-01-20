@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   before_save {self.role ||= :standard}
 
-
   enum role: [:standard, :premium, :admin]
+
 
 end
