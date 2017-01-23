@@ -30,11 +30,10 @@ end
 
 gem 'figaro'
 gem 'bootstrap-sass'
-gem 'sass-rails', '~> 5.0'
 gem 'pry'
 gem 'devise'
 gem 'faker'
-gem 'pundit'
+gem 'stripe'
 
 
 
