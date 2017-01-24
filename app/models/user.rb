@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
   before_save {self.role ||= :standard}
 
-
   enum role: [:standard, :premium, :admin]
+
 
   def standard?
     role == 'standard'
@@ -32,5 +32,6 @@ class User < ActiveRecord::Base
   def make_standard
     self.role == 'standard'
   end
+
 
 end
