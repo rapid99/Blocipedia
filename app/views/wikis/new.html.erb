@@ -21,6 +21,7 @@
       <%= f.check_box :private %> Private Topic<br><br>
 
       <%= f.submit "Create", class: 'btn btn-success', method: :create %>
+      <%= link_to "Cancel", wikis_path, class: 'btn btn-danger' %>
 
     <% end %>
   </div>
