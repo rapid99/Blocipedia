@@ -3,11 +3,21 @@
 <h3><%= link_to 'Create A Wiki', new_wiki_path, class: 'btn btn-success'%></h3><br>
 
 <% @wiki.each do |w| %>
+<<<<<<< Updated upstream
   <%= link_to w.title, w %><br>
   <small>
     Submitted <%= time_ago_in_words(w.created_at) %>
     <br><br>
   </small>
+=======
+  <% unless w.private == true && current_user.role == 'standard' %>
+    <%= link_to w.title, w %><br>
+    <small>
+      Submitted <%= time_ago_in_words(w.created_at) %>
+      <br><br>
+    </small>
+  <% end %>
+>>>>>>> Stashed changes
 <% end %>
 
 <%= link_to 'Home', '/', class: 'btn btn-primary' %><br><br>
