@@ -1,6 +1,6 @@
 class Wiki < ActiveRecord::Base
 
-  has_many :users
+  belongs_to :user
 
 
   validates :title, length: {minimum: 5}, presence: true
@@ -14,6 +14,6 @@ class Wiki < ActiveRecord::Base
     self.private == false
   end
 
-  
+
 
 end

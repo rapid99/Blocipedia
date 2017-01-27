@@ -18,7 +18,9 @@
       <%= f.label :body %>
       <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %><br><br>
 
-      <%= f.check_box :private %> Private Topic<br><br>
+      <% if current_user.role == "premium" || current_user.role == "admin" %>
+        <%= f.check_box :private %> Private Topic<br><br>
+      <% end %>
 
       <%= f.submit "Create", class: 'btn btn-success', method: :create %>
       <%= link_to "Cancel", wikis_path, class: 'btn btn-danger' %>
