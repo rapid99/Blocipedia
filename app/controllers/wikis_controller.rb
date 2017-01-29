@@ -1,6 +1,8 @@
 class WikisController < ApplicationController
-  before_action :authorize_user, except: [:index, :show, :new, :create]
-  # before_action :user_is_able_to_edit, only: [:edit]
+  before_action :authorize_user, only: [:update, :destroy]
+  before_action :authorize_edit, only: [:edit]
+
+
 
   def show
     @wiki = Wiki.find(params[:id])
@@ -51,19 +53,18 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :private)
   end
 
-  def authorize_user
-    unless current_user.admin?
-      flash[:alert] = "You must be an admin to do that!"
+  def authorize_edit
+    unless current_user.admin? || current_user.premium?
+      flash[:alert] = "Upgrade your account to access this feature!"
       redirect_to wiki_path
     end
   end
 
-  # def user_is_able_to_edit
-  #   unless current_user || current_user.admin?
-  #     flash[:alert] = "You can't do that!!"
-  #   end
-  # end
-
-
+  def authorize_user
+    unless current_user.admin?
+      flash[:alert] = "You must be an admin to do this!"
+      redirect_to wiki_path
+    end
+  end
 
 end
