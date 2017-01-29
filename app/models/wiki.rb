@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 class Wiki < ActiveRecord::Base
 
   belongs_to :user
@@ -7,11 +9,21 @@ class Wiki < ActiveRecord::Base
   validates :body, length: {minimum: 20}, presence: true
 
   def private?
-    self.private == true
+   self.private == true
   end
 
-  def public?
-    self.private == false
+  def markdown_title
+    markdown_to_html (self.title)
+  end
+
+  def markdown_body
+    markdown_to_html (self.body)
+  end
+
+  private
+
+  def make_public
+    self.private = false
   end
 
 

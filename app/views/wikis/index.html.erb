@@ -4,7 +4,7 @@
 
 <% @wiki.each do |w| %>
   <% unless w.private == true && current_user.role == 'standard' %>
-    <%= link_to w.title, w %><br>
+    <%= link_to w.markdown_title, w %>
     <small>
       Submitted <%= time_ago_in_words(w.created_at) %>
       <br><br>

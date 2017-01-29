@@ -24,10 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'pg'
 
-group :production do
-  gem 'rails_12factor'
-  gem 'heroku'
-end
 
 gem 'figaro'
 gem 'bootstrap-sass'
@@ -35,18 +31,14 @@ gem 'pry'
 gem 'devise'
 gem 'faker'
 gem 'stripe'
+gem 'redcarpet'
 
 
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
+group :production do
+  gem 'rails_12factor'
+  gem 'heroku'
+end
 
 
 group :development, :test do
@@ -63,8 +55,6 @@ group :development do
   gem 'letter_opener'
   gem 'better_errors'
   gem 'meta_request'
-
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
