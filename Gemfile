@@ -32,6 +32,7 @@ gem 'devise'
 gem 'faker'
 gem 'stripe'
 gem 'redcarpet'
+gem 'pundit'
 
 
 
