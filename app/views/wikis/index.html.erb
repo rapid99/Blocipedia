@@ -6,7 +6,7 @@
   <% unless w.private == true && current_user.role == 'standard' %>
     <%= link_to w.markdown_title, w %>
     <small>
-      Submitted <%= time_ago_in_words(w.created_at) %>
+      Submitted <%= time_ago_in_words(w.created_at) %> by <%= w.user.email %>
       <br><br>
     </small>
   <% end %>
