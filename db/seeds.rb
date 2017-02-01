@@ -18,8 +18,8 @@ end
 
 10.times do
   Collaboration.create!(
-    user_id: 3,
-    wiki_id: 1
+    user_id: Faker::Number.between(1, 5),
+    wiki_id: Faker::Number.between(1, 20)
   )
 collaboration = Collaboration.all
 end

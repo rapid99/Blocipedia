@@ -53,7 +53,7 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, :collaborations)
+    params.require(:wiki).permit(:title, :body, :private, :user_id, :collaborations)
   end
 
   def authorize_edit
