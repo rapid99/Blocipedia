@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
-  before_action :authorize_user, only: [:update, :destroy]
-  before_action :authorize_edit, only: [:edit]
+  before_action :authorize_user, only: [:destroy]
+  before_action :authorize_edit, only: [:edit, :update]
 
 
 
@@ -9,6 +9,7 @@ class WikisController < ApplicationController
   end
 
   def index
+    @public_wikis = Wiki.where(private: false)
     @wiki = Wiki.all
   end
 
@@ -21,6 +22,8 @@ class WikisController < ApplicationController
     if @wiki.save
       flash[:notice] = "Wiki has been saved"
       redirect_to wikis_path
+    else
+      flash[:error] = "Error. Could not save the wiki."
     end
   end
 
@@ -50,7 +53,7 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, :collaborations)
   end
 
   def authorize_edit

@@ -3,10 +3,10 @@
 <h3><%= link_to 'Create A Wiki', new_wiki_path, class: 'btn btn-success'%></h3><br>
 
 <% @wiki.each do |w| %>
-  <% unless w.private == true && current_user.role == 'standard' %>
+  <% unless (w.private == true && current_user.role == 'standard') || (w.private == true && current_user = w.user_id) %>
     <%= link_to w.markdown_title, w %>
     <small>
-      Submitted <%= time_ago_in_words(w.created_at) %> by <%= w.user.email %>
+      Submitted <%= time_ago_in_words(w.created_at) %>
       <br><br>
     </small>
   <% end %>

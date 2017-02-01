@@ -1,14 +1,24 @@
-<h1><%= @wiki.markdown_title %></h1>
-<h4>Created by <%= @wiki.user.email %></h4><br>
+<h1><%= @wiki.markdown_title %></h1><br/>
 <%= link_to "Back", wikis_path, class: 'btn btn-primary' %> -
 <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-primary' %> -
 <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %><br><br>
-Private Wiki: <% if @wiki.private %>
+<h5>Private Wiki: <% if @wiki.private %>
                 <input type="checkbox" checked="checked">
               <% else %>
                 <input type="checkbox">
-              <% end %>
+              <% end %></h5>
 
+<h5>Collaborators:
+                  <% @wiki.collaborations.each do |c| %>
+                    <div class="row">
+                      <%= c.user.email %>
+                    </div>
+                  <% end %>
+</h5>
+
+
+<br>
+<div style="font-family: Verdana, Geneva, sans-serif;margin:15px;">
+  <%= @wiki.markdown_body %>
+</div>
 <br><br>
-
-<%= @wiki.markdown_body %><br><br>

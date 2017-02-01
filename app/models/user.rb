@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :wikis
+  has_many :collaborations
+  has_many :wikis, through: :collaborations
 
   before_save {self.role ||= :standard}
 
