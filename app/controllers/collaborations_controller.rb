@@ -10,6 +10,14 @@ class CollaborationsController < ApplicationController
     @collaboration = Collaboration.find(params[:id])
   end
 
+  def update
+    @collaboration.update_attributes(collaboration_params)
+    if @wiki.save
+      flash[:notice] = "Wiki was updated"
+      redirect_to wikis_path
+    end
+  end
+
   def create
     @collaboration = @wiki.collaborations.new(collaboration_params)
 

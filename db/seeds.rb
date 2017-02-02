@@ -11,7 +11,7 @@ end
     title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph(10),
     private: false,
-    user_id: User.all.sample
+    user_id: Faker::Number.between(1, 5)
   )
 wiki = Wiki.all
 end

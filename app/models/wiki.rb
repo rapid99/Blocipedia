@@ -13,6 +13,20 @@ class Wiki < ActiveRecord::Base
    self.private == true
   end
 
+  def user
+    User.find(self.user_id)
+  end
+
+  def find_users
+    User.all.map do |x|
+      x.email
+    end
+  end
+
+  # def add_collaborator(collaborator)
+  #   @wiki.collaboration << collaborator
+  # end
+
   def markdown_title
     markdown_to_html (self.title)
   end

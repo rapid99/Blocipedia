@@ -3,7 +3,6 @@ class WikisController < ApplicationController
   before_action :authorize_edit, only: [:edit, :update]
 
 
-
   def show
     @wiki = Wiki.find(params[:id])
   end
@@ -53,8 +52,13 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, :user_id, :collaborations)
+    params.require(:wiki).permit(:title, :body, :private, :user_id)
   end
+
+  def add_collaborator(collaborator)
+    self.collaboration << collaborator
+  end
+
 
   def authorize_edit
     unless current_user.admin? || current_user.premium?

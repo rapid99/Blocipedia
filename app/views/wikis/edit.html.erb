@@ -17,8 +17,20 @@
       <%= f.label :body %>
       <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %><br><br>
 
+      <h4>Current Collaborator(s): </h4>
+      <div style="margin-left:30px;">
+        <% @wiki.collaborations.each do |c| %>
+          <div class="row">
+            <%= link_to 'X', '#', method: :delete, class: "btn btn-danger btn-xs" %> <%= c.user.email %>
+          </div>
+        <% end %>
+      </div><br><br>
+
       <%= f.label :collaborations %>
-      <%= f.text_field :collaborations, class: 'form-control', placeholder: "Enter collaborators" %><br><br>
+      <!-- check out decorator gem -->
+      <%= f.select :collaborations, @wiki.find_users, class: 'form-control', placeholder: "Enter collaborators" %>
+
+      <%= button_to "Update Collaborators", action: "update" %><br>
 
       <%= f.check_box :private %> Private Wiki<br><br>
 
