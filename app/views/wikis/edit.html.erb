@@ -26,13 +26,15 @@
         <% end %>
       </div><br><br>
 
+
       <%= f.label :collaborations %>
       <!-- check out decorator gem -->
-      <%= f.select :collaborations, @wiki.find_users, class: 'form-control', placeholder: "Enter collaborators" %>
+      <%= f.select :collaborations, @wiki.find_users, class: 'form-control' %><br><br>
+      <%= f.button "Add Collaboration", class: 'btn btn-primary' %><br><br><br>
 
-      <%= button_to "Update Collaborators", action: "update" %><br>
 
-      <%= f.check_box :private %> Private Wiki<br><br>
+
+      <%= f.check_box :private %> Private Wiki<br><br><br>
 
       <%= f.submit "Update", class: 'btn btn-success' %>
     <% end %>

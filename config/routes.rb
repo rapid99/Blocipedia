@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :collaborations
   end
 
+  get 'collaborations/edit'
+
   resources :users
 
   resources :charges, only: [:new, :create]

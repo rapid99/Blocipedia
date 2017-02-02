@@ -3,9 +3,9 @@ class Collaboration < ActiveRecord::Base
   belongs_to :user #fix relationship
 
 # method to update Collaborators
-  # def update_collaborations(collaborators)
-  #
-  # end
+  def update_collaborations(collaborators)
+    
+  end
 
   def collaboration_user
     collaborations.collect(:user_id)

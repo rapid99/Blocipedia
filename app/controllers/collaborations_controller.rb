@@ -45,7 +45,7 @@ class CollaborationsController < ApplicationController
   private
 
   def set_wiki
-    @wiki = Wiki.find(params[:wiki_id])
+    #@wiki = Wiki.find(params[:wiki_id])
   end
 
   def collaboration_params
