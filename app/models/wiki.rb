@@ -17,6 +17,7 @@ class Wiki < ActiveRecord::Base
     User.find(self.user_id)
   end
 
+
   def find_users
     User.all.map do |x|
       x.email
