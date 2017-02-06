@@ -13,8 +13,8 @@ class Wiki < ActiveRecord::Base
    self.private == true
   end
 
-  def user
-    User.find(self.user_id)
+  def del_collaborator(x)
+    self.collaboration.delete(x)
   end
 
 
@@ -24,9 +24,13 @@ class Wiki < ActiveRecord::Base
     end
   end
 
-  # def add_collaborator(collaborator)
-  #   @wiki.collaboration << collaborator
-  # end
+  def add_collaborator(collab_id)
+    Collaboration.create(user_id: collab_id, wiki_id: self.id)
+  end
+
+  def remove_collaborator(collab_id)
+    Collaboration.delete(user_id: collab_id, wiki_id: self.id)
+  end
 
   def markdown_title
     markdown_to_html (self.title)

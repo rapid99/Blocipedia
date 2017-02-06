@@ -7,7 +7,11 @@ class CollaborationsController < ApplicationController
   end
 
   def show
-    @collaboration = Collaboration.find(params[:id])
+    @collaboration = Collaboration.find(params[:user_id])
+  end
+
+  def edit
+    @collaboration = Collaboration.find(params[:user_id])
   end
 
   def update
