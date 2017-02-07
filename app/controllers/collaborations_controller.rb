@@ -23,14 +23,15 @@ class CollaborationsController < ApplicationController
   end
 
   def create
-    @collaboration = Collaboration.create!(collaboration_params)
+    user = User.find_by(email: params["collaboration"]["user"])
+    @collaboration = Collaboration.create!(wiki_id: params["wiki_id"], user_id: user.id)
 
      if @collaboration.save
        flash[:notice] = "Collaboration was saved."
-       redirect_to @wiki
+       redirect_to wikis_path
      else
        flash[:error] = "Error. Could not save the collaboration."
-       redirect_to @wiki
+       redirect_to wikis_path
      end
   end
 
@@ -53,7 +54,7 @@ class CollaborationsController < ApplicationController
   end
 
   def collaboration_params
-    params.require(:collaboration).permit(:wiki_id, :user_id, :collaborations)
+    params.require(:collaboration).permit(:wiki_id, :user_id, :collaboration)
   end
 
 
