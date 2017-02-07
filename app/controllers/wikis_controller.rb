@@ -38,7 +38,7 @@ class WikisController < ApplicationController
       flash[:notice] = "Wiki was updated"
       redirect_to wikis_path
     end
-    if params[:wiki][:collaborations]
+    if params[:wiki][:collaborations] != ""
       collaborator = User.find_by(email: params[:wiki][:collaborations])
       @wiki.add_collaborator(collaborator.id)
     end

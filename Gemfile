@@ -35,7 +35,6 @@ gem 'redcarpet'
 gem 'pundit'
 
 
-
 group :production do
   gem 'rails_12factor'
   gem 'heroku'

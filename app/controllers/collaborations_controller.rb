@@ -3,7 +3,7 @@ class CollaborationsController < ApplicationController
   before_action :set_wiki
 
   def new
-    @collaboration = @wiki.collaborations.new
+    @collaboration = Collaboration.new
   end
 
   def show
@@ -23,7 +23,7 @@ class CollaborationsController < ApplicationController
   end
 
   def create
-    @collaboration = @wiki.collaborations.new(collaboration_params)
+    @collaboration = Collaboration.create!(collaboration_params)
 
      if @collaboration.save
        flash[:notice] = "Collaboration was saved."
@@ -53,7 +53,7 @@ class CollaborationsController < ApplicationController
   end
 
   def collaboration_params
-    params.require(:collaboration).permit(:wiki_id, :user_id)
+    params.require(:collaboration).permit(:wiki_id, :user_id, :collaborations)
   end
 
 
