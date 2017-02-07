@@ -1,5 +1,10 @@
 class AddCollaborationsToWikis < ActiveRecord::Migration
   def change
-    add_column :wikis, :collaborations, :string
+    create_table :collaborations do |t|
+      t.references :user, foreign_key: true
+      t.references :wiki, foreign_key: true
+
+      t.timestamps
+    end
   end
 end
