@@ -2,7 +2,8 @@ include ApplicationHelper
 
 class Wiki < ActiveRecord::Base
 
-  belongs_to :user
+  has_many :collaborations, dependent: :destroy
+  has_many :users, through: :collaborations
 
 
   validates :title, length: {minimum: 5}, presence: true
@@ -10,6 +11,21 @@ class Wiki < ActiveRecord::Base
 
   def private?
    self.private == true
+  end
+
+
+  def find_users
+    User.all.map do |x|
+      x.email
+    end
+  end
+
+  def add_collaborator(collab_id)
+    Collaboration.create(user_id: collab_id, wiki_id: self.id)
+  end
+
+  def remove_collaborator(collab_id)
+    Collaboration.delete(user_id: collab_id, wiki_id: self.id)
   end
 
   def markdown_title

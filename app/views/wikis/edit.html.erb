@@ -11,15 +11,17 @@
   </div>
   <div class="col-md-8">
     <%= form_for @wiki do |f| %>
-      <%= f.label :title %>
+      <%= f.label :title %><br>
       <%= f.text_field :title, placeholder: "Enter wiki title" %><br><br>
 
       <%= f.label :body %>
       <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %><br><br>
 
-      <%= f.check_box :private %> Private Topic<br><br>
 
-      <%= f.submit "Update", class: 'btn btn-success' %>
+      <%= f.check_box :private %> Private Wiki<br><br><br>
+
+      <%= f.submit "Update", class: 'btn btn-success', method: :update %>
     <% end %>
   </div>
+  <%= render partial: 'collaborations/form', locals: { wiki: @wiki } %>
 </div>

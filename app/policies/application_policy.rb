@@ -1,9 +1,9 @@
 class ApplicationPolicy
-  attr_reader :user, :wiki
+  attr_reader :user, :record
 
-  def initialize(user, wiki)
+  def initialize(user, record)
     @user = user
-    @wiki = wiki
+    @record = record
   end
 
   def index?
@@ -11,11 +11,11 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => wiki.id).exists?
+    scope.where(:id => record.id).exists?
   end
 
   def create?
-    false
+    user.present? && current_user = user
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present?
+    (user.present? && record.user == user)
   end
 
   def edit?
@@ -31,11 +31,12 @@ class ApplicationPolicy
   end
 
   def destroy?
-    wiki.user_id == user.id
+    update?
   end
 
   def scope
-    Pundit.policy_scope!(user, wiki.class)
+    # Pundit.policy_scope!(user, record.class)
+    record.class
   end
 
   class Scope

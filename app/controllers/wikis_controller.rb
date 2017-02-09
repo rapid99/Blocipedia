@@ -1,7 +1,6 @@
 class WikisController < ApplicationController
-  before_action :authorize_user, only: [:update, :destroy]
-  before_action :authorize_edit, only: [:edit]
-
+  before_action :authorize_user, only: [:destroy]
+  before_action :authorize_edit, only: [:edit, :update]
 
 
   def show
@@ -9,6 +8,7 @@ class WikisController < ApplicationController
   end
 
   def index
+    @public_wikis = Wiki.where(private: false)
     @wiki = Wiki.all
   end
 
@@ -21,6 +21,8 @@ class WikisController < ApplicationController
     if @wiki.save
       flash[:notice] = "Wiki has been saved"
       redirect_to wikis_path
+    else
+      flash[:error] = "Error. Could not save the wiki."
     end
   end
 
@@ -28,12 +30,17 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
   end
 
+
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.update_attributes(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki was updated"
       redirect_to wikis_path
+    end
+    if params[:wiki][:collaborations]
+      collaborator = User.find_by(email: params[:wiki][:collaborations])
+      @wiki.add_collaborator(collaborator.id)
     end
   end
 
@@ -50,8 +57,13 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, :user_id)
   end
+
+  def add_collaborator(collaborator)
+    self.collaboration << collaborator
+  end
+
 
   def authorize_edit
     unless current_user.admin? || current_user.premium?
