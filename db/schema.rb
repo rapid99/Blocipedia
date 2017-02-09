@@ -19,12 +19,9 @@ ActiveRecord::Schema.define(version: 20170131183535) do
   create_table "collaborations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "wiki_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "collaborations", ["user_id"], name: "index_collaborations_on_user_id", using: :btree
-  add_index "collaborations", ["wiki_id"], name: "index_collaborations_on_wiki_id", using: :btree
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
