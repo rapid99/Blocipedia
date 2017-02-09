@@ -13,10 +13,6 @@ class Wiki < ActiveRecord::Base
    self.private == true
   end
 
-  def del_collaborator(x)
-    self.collaboration.delete(x)
-  end
-
 
   def find_users
     User.all.map do |x|

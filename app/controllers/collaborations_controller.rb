@@ -1,5 +1,4 @@
 class CollaborationsController < ApplicationController
-
   before_action :set_wiki
 
   def new
@@ -28,30 +27,30 @@ class CollaborationsController < ApplicationController
 
      if @collaboration.save
        flash[:notice] = "Collaboration was saved."
-       redirect_to wikis_path
+       redirect_to wiki_path(@wiki)
      else
        flash[:error] = "Error. Could not save the collaboration."
-       redirect_to wikis_path
+       redirect_to wiki_path(@wiki)
      end
   end
 
   def destroy
-    @collaboration = Collaboration.find(params[:id])
-
+     @collaboration = Collaboration.find(params["id"])
     if @collaboration.destroy
-       flash[:notice] = " #{@collaboration.user.name} was successfully removed."
-       redirect_to @wiki
+       flash[:notice] = "#{@collaboration.user.email} was successfully removed."
+       redirect_to wiki_path(@wiki)
      else
        flash[:error] = "Error. Could not remove the collaboration."
-       redirect_to @wiki
+       redirect_to wiki_path(@wiki)
      end
   end
 
   private
-
+  
   def set_wiki
-    #@wiki = Wiki.find(params[:wiki_id])
+    @wiki = Wiki.find(params["wiki_id"])
   end
+
 
   def collaboration_params
     params.require(:collaboration).permit(:wiki_id, :user_id, :collaboration)

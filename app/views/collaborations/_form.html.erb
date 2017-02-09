@@ -2,7 +2,7 @@
 <div style="margin-left:30px;">
   <% wiki.collaborations.each do |c| %>
     <div class="row">
-      <%= link_to 'X', wiki_collaboration_path(wiki_id: wiki.id), class: "btn btn-danger btn-xs"%> <%= c.user.email %>
+      <%= link_to 'X', wiki_collaboration_path(wiki.id, c), method: :delete, class: "btn btn-danger btn-xs"%> <%= c.user.email %>
     </div>
   <% end %>
 </div><br><br>
